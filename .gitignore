@@ -1,4 +1,4 @@
 log
-.grin
-!./.grin/grin-server.toml
-!./.grin/grin-wallet.toml
+.grin/*
+!.grin/grin-server.toml
+!.grin/grin-wallet.toml

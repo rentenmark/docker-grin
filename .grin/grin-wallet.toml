@@ -1,0 +1,72 @@
+
+#########################################
+### WALLET CONFIGURATION              ###
+#########################################
+[wallet]
+
+#The chain type, which defines the genesis block and the set of cuckoo
+#parameters used for mining as well as wallet output coinbase maturity. Can be:
+#AutomatedTesting - For CI builds and instant blockchain creation
+#UserTesting - For regular user testing (cuckoo 16)
+#Testnet1 - Testnet1 genesis block (cuckoo 16)
+#Testnet2 - Testnet2 genesis block (cuckoo 30)
+#Testnet3 - Testnet3 genesis block (cuckoo 30)
+#Testnet4 - Testnet4 genesis block (cuckatoo 29+)
+chain_type = "Testnet4"
+
+#host IP for wallet listener, change to "0.0.0.0" to receive grins
+api_listen_interface = "0.0.0.0"
+
+#port for wallet listener
+
+#path of TLS certificate file, self-signed certificates are not supported
+#tls_certificate_file = ""
+#private key for the TLS certificate
+#tls_certificate_key = ""
+
+api_listen_port = 13415
+
+#path of the secret token used by the API to authenticate the calls
+#comment it to disable basic auth
+#api_secret_path = ""
+
+#location of the node api secret for basic auth on the Grin API
+#node_api_secret_path = ""
+
+#where the wallet should find a running node
+check_node_api_http_addr = "http://0.0.0.0:13413"
+
+#where to find wallet files (seed, data, etc)
+data_file_dir = "/root/.grin/wallet_data"
+
+#Whether to use the black background color scheme for command line
+dark_background_color_scheme = true
+
+
+#########################################
+### LOGGING CONFIGURATION             ###
+#########################################
+[logging]
+
+#whether to log to stdout
+log_to_stdout = true
+
+#log level for stdout: Error, Warning, Info, Debug, Trace
+stdout_log_level = "Warning"
+
+#whether to log to a file
+log_to_file = true
+
+#log level for file: Error, Warning, Info, Debug, Trace
+file_log_level = "Debug"
+
+#log file path
+log_file_path = "/root/.grin/grin-wallet.log"
+
+#whether to append to the log file (true), or replace it on every run (false)
+log_file_append = true
+
+#maximum log file size in bytes before performing log rotation
+#comment it to disable log rotation
+log_max_size = 16777216
+
