@@ -1,0 +1,50 @@
+# this is using docker compose file version 3.7 requiring
+# docker engine release 18.06.0+ to be safe, it may work with other lower versions
+# run docker --version to determine your docker version
+
+version: "3"
+services:
+  grin-web-wallet:
+    build: ./grin-web-wallet
+    image: grin-web-wallet
+    ports: 
+      - 80:4200
+    networks: 
+      - main 
+  grin-wallet-owner-api:
+    build: ./grin
+    image: grin
+    ports:
+      - 13420:13420
+    networks: 
+      - main 
+    volumes:
+      - ./.grin:/root/.grin
+    entrypoint: grin wallet --external -p "password" owner_api 
+    # todo: it turns out that wallet::command::owner_api is hardcoded to LOCALHOST ONLY and so this will have to go in the same container
+    #  as the web wallet
+  grin-wallet-listener:
+    build: ./grin
+    image: grin
+    ports: 
+      - 13415:13415
+    networks: 
+      - main 
+    volumes:
+      - ./.grin:/root/.grin
+    entrypoint: grin wallet --external -p "password" listen
+  grin-node:
+    build: ./grin
+    image: grin
+    ports: 
+      - 13413:13413
+      - 13414:13414
+      - 13415:13415
+      - 13416:13416
+    networks: 
+      - main 
+    volumes:
+      - ./.grin:/root/.grin
+    entrypoint: grin
+networks:
+  main:
